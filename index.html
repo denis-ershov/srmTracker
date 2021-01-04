@@ -1,21 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
 
     <title>srmTracker</title>
   </head>
-  <body style="width: 90%; margin: 0 auto;">
+  <body style="width: 90%; margin: 0 auto">
     <h1>srmTracker</h1>
 
-    <table class="table table-hover">
+    <table id="table-res" class="table table-hover">
       <thead>
         <tr>
+          <th scope="col">ID TMDB</th>
           <th scope="col">Название</th>
           <th scope="col">Оригинальное название</th>
           <th scope="col">Английское название</th>
@@ -27,7 +33,8 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">Ведьмак</th>
+          <th scope="row">71912</th>
+          <td>Ведьмак</td>
           <td>The Witcher</td>
           <td>The Witcher</td>
           <td>Сериал</td>
@@ -36,7 +43,8 @@
           <td>В производстве</td>
         </tr>
         <tr>
-          <th scope="row">Очень странные дела</th>
+          <th scope="row">66732</th>
+          <td>Очень странные дела</td>
           <td>Stranger Things</td>
           <td>Stranger Things</td>
           <td>Сериал</td>
@@ -49,8 +57,25 @@
 
     <form class="row gy-2 gx-3 align-items-center">
       <div class="col-auto">
-        <label class="visually-hidden" for="autoSizingInput">Английское название</label>
-        <input type="text" class="form-control" id="autoSizingInput" placeholder="Английское название">
+        <label class="visually-hidden" for="autoSizingInput">ID TMDB</label>
+        <input
+          type="text"
+          class="form-control"
+          id="autoSizingInput"
+          placeholder="ID TMDB*"
+          required
+        />
+      </div>
+      <div class="col-auto">
+        <label class="visually-hidden" for="autoSizingInput"
+          >Номер сезона</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="autoSizingInput"
+          placeholder="Номер сезона"
+        />
       </div>
       <div class="col-auto">
         <label class="visually-hidden" for="autoSizingSelect">Тип</label>
@@ -61,11 +86,11 @@
         </select>
       </div>
       <div class="col-auto">
-        <button type="submit" class="btn btn-danger">Добавить</button>
+        <button type="submit" class="btn btn-danger" onclick="addRow('table-res')">Добавить</button>
       </div>
     </form>
 
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+<!--     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Успешно!</strong> Сериал успешно добавлен в таблицу для отслеживания.
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -73,8 +98,46 @@
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <strong>Ошибка!</strong> Сериал не был добавлен, проверьте правильность в названии или типе сериала.
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    </div> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function addRow(id) {
+        var tbody = document
+          .getElementById(id)
+          .getElementsByTagName("TBODY")[0];
+        var row = document.createElement("TR");
+        var th = document.createElement("TH");
+        th.setAttribute("scope", "row");
+        th.appendChild(document.createTextNode("column 1"));
+        var td1 = document.createElement("TD");
+        td1.appendChild(document.createTextNode("column 2"));
+        var td2 = document.createElement("TD");
+        td2.appendChild(document.createTextNode("column 3"));
+        var td3 = document.createElement("TD");
+        td3.appendChild(document.createTextNode("column 4"));
+        var td4 = document.createElement("TD");
+        td4.appendChild(document.createTextNode("column 5"));
+        var td5 = document.createElement("TD");
+        td5.appendChild(document.createTextNode("column 6"));
+        var td6 = document.createElement("TD");
+        td6.appendChild(document.createTextNode("column 7"));
+        var td7 = document.createElement("TD");
+        td7.appendChild(document.createTextNode("column 8"));
+        row.appendChild(th);
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+        row.appendChild(td4);
+        row.appendChild(td5);
+        row.appendChild(td6);
+        row.appendChild(td7);
+        tbody.appendChild(row);
+      }
+    </script>
   </body>
 </html>
