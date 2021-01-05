@@ -61,7 +61,7 @@
         <input
           type="text"
           class="form-control"
-          id="autoSizingInput"
+          id="tmdb-id autoSizingInput"
           placeholder="ID TMDB*"
           required
         />
@@ -79,18 +79,24 @@
       </div>
       <div class="col-auto">
         <label class="visually-hidden" for="autoSizingSelect">Тип</label>
-        <select class="form-select" id="autoSizingSelect">
+        <select class="form-select" id="tmdb-type autoSizingSelect">
           <option selected>Выбрать тип</option>
           <option value="1">Сериал</option>
           <option value="2">Фильм</option>
         </select>
       </div>
       <div class="col-auto">
-        <button type="submit" class="btn btn-danger" onclick="addRow('table-res')">Добавить</button>
+        <button
+          type="submit"
+          class="btn btn-danger"
+          onclick="addRow('table-res')"
+        >
+          Добавить
+        </button>
       </div>
     </form>
 
-<!--     <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <!--     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Успешно!</strong> Сериал успешно добавлен в таблицу для отслеживания.
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -107,27 +113,48 @@
     ></script>
     <script>
       function addRow(id) {
+        var tmdbID = document.getElementById("tmdb-id").value;
+        (async () => {
+      let url = "https://api.themoviedb.org/3/tv/" + tmdbID + "?api_key=50dc44cf889efcd7cce1f8cb9fcf6ad5&language=ru-RU";
+      let response = await fetch(url);
+      let commits = await response.json();
+
+      var rusName = commits.name;
+      var usName = commits.original_name;
+      var orName = commits.original_name;
+      var type = document.getElementById("tmdb-type").value;
+      var season = commits.seasons.name;
+      if (type == 'Сериал') {
+        var relDate = commits.first_air_date;
+      }
+      else {
+        var relDate = commits.release_date;
+      }
+      var status = commits.status;
+      console.log(rusName);
+    })()
+
         var tbody = document
           .getElementById(id)
           .getElementsByTagName("TBODY")[0];
         var row = document.createElement("TR");
         var th = document.createElement("TH");
         th.setAttribute("scope", "row");
-        th.appendChild(document.createTextNode("column 1"));
+        th.appendChild(document.createTextNode(tmdbID));
         var td1 = document.createElement("TD");
-        td1.appendChild(document.createTextNode("column 2"));
+        td1.appendChild(document.createTextNode(rusName));
         var td2 = document.createElement("TD");
-        td2.appendChild(document.createTextNode("column 3"));
+        td2.appendChild(document.createTextNode(usName));
         var td3 = document.createElement("TD");
-        td3.appendChild(document.createTextNode("column 4"));
+        td3.appendChild(document.createTextNode(orName));
         var td4 = document.createElement("TD");
-        td4.appendChild(document.createTextNode("column 5"));
+        td4.appendChild(document.createTextNode(type));
         var td5 = document.createElement("TD");
-        td5.appendChild(document.createTextNode("column 6"));
+        td5.appendChild(document.createTextNode(season));
         var td6 = document.createElement("TD");
-        td6.appendChild(document.createTextNode("column 7"));
+        td6.appendChild(document.createTextNode(relDate));
         var td7 = document.createElement("TD");
-        td7.appendChild(document.createTextNode("column 8"));
+        td7.appendChild(document.createTextNode(status));
         row.appendChild(th);
         row.appendChild(td1);
         row.appendChild(td2);
