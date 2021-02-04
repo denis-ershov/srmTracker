@@ -22,9 +22,9 @@
       <div class="widget-container">
         <div class="top-left">
           <h1 class="city" id="city">Weather Widget App</h1>
-          <h2 id="day">Day</h2>
+          <h2 id="day">День</h2>
           <h3 id="date">Month, Day Year</h3>
-          <h3 id="time">Time</h3>
+          <h3 id="time">Время</h3>
           <p class="geo"></p>
         </div>
         <div class="top-right">
@@ -41,11 +41,11 @@
         <div class="vertical-half-divider"></div>
         <div class="bottom-right">
           <div class="other-details-key">
-            <p>Wind Speed</p>
-            <p>Humidity</p>
-            <p>Pressure</p>
-            <p>Sunrise Time</p>
-            <p>Sunset Time</p>
+            <p>Скорость ветра</p>
+            <p>Влажность</p>
+            <p>Давление</p>
+            <p>Время восхода</p>
+            <p>Время заката</p>
           </div>
           <div class="other-details-values">
             <p class="windspeed">0 Km/h</p>
@@ -271,14 +271,15 @@
         text-align:center;
         font-weight:400;
       }</style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script>$(document).ready(function() {
         $(".wrapper").css("margin-top", ($(window).height())/5);
       //DATE AND TIME//
       //Converted into days, months, hours, day-name, AM/PM
       var dt = new Date()
-      var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      var days = ["Воскресенье", "Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"];
       $('#day').html(days[dt.getDay()]);
-      var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+      var months = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"]
       $('#date').html(months[dt.getMonth()] + " " + dt.getDate() + ", " + dt.getFullYear());
       $('#time').html((dt.getHours()>12?(dt.getHours()-12):dt.getHours()).toString() + ":" + ((dt.getMinutes() < 10 ? '0' : '').toString() + dt.getMinutes().toString()) + (dt.getHours() < 12 ? ' AM' : ' PM').toString());
     
@@ -304,16 +305,16 @@
           //var utcTime = Math.round(new Date().getTime()/1000.0);
     
           // $('.geo').html(position.coords.latitude + " " + position.coords.longitude);
-          $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + myLatitude + "&lon=" + myLongitude + "&id=524901&appid=ca8c2c7970a09dc296d9b3cfc4d06940", function(json) {
+          $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + myLatitude + "&lon=" + myLongitude + "&id=524901&appid=ca8c2c7970a09dc296d9b3cfc4d06940&lang=ru", function(json) {
             $('#city').html(json.name + ", " + json.sys.country);
             $('#weather-status').html(json.weather[0].main + " / " + json.weather[0].description);
             
             //WEATHER CONDITIONS FOUND HERE: http://openweathermap.org/weather-conditions
             switch (json.weather[0].main) {
-              case "Clouds":
+              case "Облачно":
                 $('.weather-icon').attr("src","https://myleschuahiock.files.wordpress.com/2016/02/cloudy.png");
                 break;
-              case "Clear":
+              case "Ясно":
                 $('.weather-icon').attr("src","https://myleschuahiock.files.wordpress.com/2016/02/sunny2.png");
                 break;
               case "Thunderstorm":
@@ -322,10 +323,10 @@
               case "Drizzle":
                  $('.weather-icon').attr("src","https://myleschuahiock.files.wordpress.com/2016/02/drizzle.png");
                 break;
-              case "Rain":
+              case "Дождь":
                  $('.weather-icon').attr("src","https://myleschuahiock.files.wordpress.com/2016/02/rain.png");
                 break;
-              case "Snow":
+              case "Снег":
                  $('.weather-icon').attr("src","https://myleschuahiock.files.wordpress.com/2016/02/snow.png");
                 break;
               case "Extreme":
