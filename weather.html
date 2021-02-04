@@ -23,7 +23,7 @@
         <div class="top-left">
           <h1 class="city" id="city">Weather Widget App</h1>
           <h2 id="day">День</h2>
-          <h3 id="date">Month, Day Year</h3>
+          <h3 id="date">Месяц, День Год</h3>
           <h3 id="time">Время</h3>
           <p class="geo"></p>
         </div>
@@ -345,12 +345,12 @@
             $('.sunrise-time').html((sunriseDt.getHours()>12?(sunriseDt.getHours()-12):sunriseDt.getHours()).toString() + ":" + ((sunriseDt.getMinutes() < 10 ? '0' : '').toString() + sunriseDt.getMinutes().toString()) + (sunriseDt.getHours() < 12 ? ' AM' : ' PM').toString());
             $('.sunset-time').html((sunsetDt.getHours()>12?(sunsetDt.getHours()-12):sunsetDt.getHours()).toString() + ":" + ((sunsetDt.getMinutes() < 10 ? '0' : '').toString() + sunsetDt.getMinutes().toString()) + (sunsetDt.getHours() < 12 ? ' AM' : ' PM').toString());
             // $('.sunrise-time').html(json.sys.sunrise);
-            // $('.sunset-time').html(json.sys.sunset);
+            //$('.sunset-time').html(json.sys.sunset);
           });
     
         });
       } else {
-        $("#city").html("Please turn on Geolocator on Browser.")
+        $("#city").html("Пожалуйста, включите Геолокатор в браузере.")
       }
     });</script>
   </body>
