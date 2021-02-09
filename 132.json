@@ -1,0 +1,88 @@
+{
+  "backdrop_path": "/6sUZlK63ij3dHiwOiCVdr7f1Rek.jpg",
+  "created_by": [
+    {
+      "id": 1276960,
+      "credit_id": "5c0aa9469251414795047604",
+      "name": "Patrick McKay",
+      "gender": 0,
+      "profile_path": null
+    },
+    {
+      "id": 1276959,
+      "credit_id": "5c0aa95c0e0a2638bc04bb53",
+      "name": "John D. Payne",
+      "gender": 2,
+      "profile_path": null
+    }
+  ],
+  "episode_run_time": [],
+  "first_air_date": null,
+  "genres": [{ "id": 10765, "name": "НФ и Фэнтези" }],
+  "homepage": "https://www.amazon.com/adlp/lotronprime",
+  "id": 84773,
+  "in_production": true,
+  "languages": ["en"],
+  "last_air_date": null,
+  "last_episode_to_air": null,
+  "name": "Властелин колец",
+  "next_episode_to_air": null,
+  "networks": [
+    {
+      "name": "Amazon",
+      "id": 1024,
+      "logo_path": "/ifhbNuuVnlwYy5oXA5VIb2YR8AZ.png",
+      "origin_country": ""
+    }
+  ],
+  "number_of_episodes": 2,
+  "number_of_seasons": 1,
+  "origin_country": ["US"],
+  "original_language": "en",
+  "original_name": "The Lord of the Rings",
+  "overview": "",
+  "popularity": 2.832,
+  "poster_path": "/c65wdGKRznql6FDg6SgXy4cKGfp.jpg",
+  "production_companies": [
+    {
+      "id": 20580,
+      "logo_path": "/tkFE81jJIqiFYPP8Tho57MXRQEx.png",
+      "name": "Amazon Studios",
+      "origin_country": "US"
+    },
+    {
+      "id": 12,
+      "logo_path": "/iaYpEp3LQmb8AfAtmTvpqd4149c.png",
+      "name": "New Line Cinema",
+      "origin_country": "US"
+    },
+    {
+      "id": 137357,
+      "logo_path": null,
+      "name": "Harper Collins Publishers",
+      "origin_country": "US"
+    }
+  ],
+  "production_countries": [
+    { "iso_3166_1": "US", "name": "United States of America" }
+  ],
+  "seasons": [
+    {
+      "air_date": null,
+      "episode_count": 2,
+      "id": 114041,
+      "name": "Сезон 1",
+      "overview": "",
+      "poster_path": null,
+      "season_number": 1
+    }
+  ],
+  "spoken_languages": [
+    { "english_name": "English", "iso_639_1": "en", "name": "English" }
+  ],
+  "status": "In Production",
+  "tagline": "",
+  "type": "Scripted",
+  "vote_average": 0.0,
+  "vote_count": 0
+}
