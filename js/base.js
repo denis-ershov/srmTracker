@@ -1,26 +1,19 @@
-// проверяем существования префикса.
-window.indexedDB =
-  window.indexedDB ||
-  window.mozIndexedDB ||
-  window.webkitIndexedDB ||
-  window.msIndexedDB;
-// НЕ ИСПОЛЬЗУЙТЕ "var indexedDB = ..." вне функции.
-// также могут отличаться и window.IDB* objects: Transaction, KeyRange и тд
-window.IDBTransaction =
-  window.IDBTransaction ||
-  window.webkitIDBTransaction ||
-  window.msIDBTransaction;
-window.IDBKeyRange =
-  window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
-// (Mozilla никогда не создавала префиксов для объектов, поэтому window.mozIDB* не требуется проверять)
+//import { openDB, deleteDB, wrap, unwrap } from 'https://unpkg.com/idb?module';
+import { openDB, deleteDB, wrap, unwrap } from 'idb';
+var db;
 
-if (!window.indexedDB) {
-  window.alert(
-    "Ваш браузер не поддерживат стабильную версию IndexedDB. Такие-то функции будут недоступны"
-  );
+init();
+
+async function init() {
+  db = await idb.openDb('Series', 1, db => {
+    db.createObjectStore('series', {keyPath: 'id'});
+  });
+
+  list();
 }
 
-function addSeries() {
+
+async function addSeries() {
   let tmdbID = document.querySelector("#id").value;
   var requestURL =
     "https://api.themoviedb.org/3/tv/" +
@@ -53,15 +46,26 @@ function addSeries() {
     } else {
       let sStatus = json.status;
     }
+let id = tmdbID;
+  let tx = db.transaction('series', 'readwrite');
 
-    // Открываем базу данных Series
+  try {
+    tx.objectStore('series').add({id, rusName, orName, sType, sSeason, relDate, sStatus});
+    list();
+  } catch(err) {
+    if (err.name == 'ConstraintError') {
+      alert("Такой сериал уже существует");
+      addSeries();
+    } else {
+      throw err;
+    }
+  }
+/*
     var requestdb = window.indexedDB.open("Series");
 
-    // Это событие появилось только в самых новых браузерах
     requestdb.onupgradeneeded = function (event) {
       var db = event.target.result;
 
-      // Создаем хранилище объектов для этой базы данных
       var objectStore = db.createObjectStore("Series", { keyPath: "id" });
       var tx = db.transaction(["Series"], "readwrite");
       var dbn = event.target.transaction;
@@ -78,10 +82,9 @@ function addSeries() {
         status: sStatus,
       };
 
-      var requestdb = series.add(serial); // (3)
+      var requestdb = series.add(serial);
 
       requestdb.onsuccess = function (event) {
-        // (4)
         console.log("Сериал добавлен в хранилище", requestdb.result);
       };
       tx.oncomplete = function(event) {
@@ -89,14 +92,10 @@ function addSeries() {
     };
 
       requestdb.onerror = function (event) {
-        // ConstraintError возникает при попытке добавить объект с ключом, который уже существует
         if (requestdb.error.name == "ConstraintError") {
-          console.log("Сериал с таким id уже существует"); // обрабатываем ошибку
-          event.preventDefault(); // предотвращаем отмену транзакции
-          // ...можно попробовать использовать другой ключ...
+          console.log("Сериал с таким id уже существует");
+          event.preventDefault();
         } else {
-          // неизвестная ошибка
-          // транзакция будет отменена
           requestdb.abort();
         }
       };
@@ -104,6 +103,6 @@ function addSeries() {
       tx.onabort = function () {
         console.log("Ошибка", tx.error);
       };
-    };
+    };*/
   };
 }

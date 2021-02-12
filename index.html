@@ -129,7 +129,71 @@
       };
     }*/
   </script>
-  <script src="js/base.js"></script>
+  <script src="https://unpkg.com/idb/build/iife/index-min.js"></script>
+  <script>
+    var db;
+
+    init();
+    
+    async function init() {
+      db = await idb.openDB('Series', 1, db => {
+        db.createObjectStore('Series', {keyPath: 'id'});
+      });
+    
+      //list();
+    }
+    
+    
+    function addSeries() {
+      let tmdbID = document.querySelector("#id").value;
+      var requestURL =
+        "https://api.themoviedb.org/3/tv/" +
+        tmdbID +
+        "?api_key=50dc44cf889efcd7cce1f8cb9fcf6ad5&language=ru-RU";
+      //console.log(requestURL);
+      var request = new XMLHttpRequest();
+      request.open("GET", requestURL);
+      request.responseType = "json";
+      request.send();
+      request.onload = function () {
+        var json = request.response;
+        let rusName = json.name;
+        let orName = json.original_name;
+        let sType = document.querySelector("#type").options[
+          document.querySelector("#type").selectedIndex
+        ].text;
+        let sSeason = json.seasons[0]["name"];
+        if (sType == "Сериал") {
+          if (json.first_air_date == null) {
+            relDate = "Неизвестно";
+          } else {
+            let relDate = json.first_air_date;
+          }
+        } else {
+          let relDate = json.release_date;
+        }
+        if (json.status == "In Production") {
+          status = "В производстве";
+        } else {
+          let sStatus = json.status;
+        }
+    let id = tmdbID;
+      let tx = db.transaction('Series', 'readwrite');
+    
+      try {
+        tx.objectStore('Series').add({id, rusName, orName, sType, sSeason, relDate, sStatus});
+        //list();
+      } catch(err) {
+        if (err.name == 'ConstraintError') {
+          alert("Такой сериал уже существует");
+          //addSeries();
+        } else {
+          throw err;
+        }
+      }
+    };
+}</script>
+  <!-- <script src="js/base.js"></script> -->
 </body>
 
 </html>
