@@ -28,22 +28,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td scope="row">Ведьмак</td>
-        <td>The Witcher</td>
-        <td>Сериал</td>
-        <td>2 сезон</td>
-        <td>2021</td>
-        <td>В производстве</td>
-      </tr>
-      <tr>
-        <td scope="row">Очень странные дела</td>
-        <td>Stranger Things</td>
-        <td>Сериал</td>
-        <td>4 сезон</td>
-        <td>2021</td>
-        <td>В производстве</td>
-      </tr>
     </tbody>
   </table>
 
@@ -66,7 +50,7 @@
       </select>
     </div>
     <div class="col-auto">
-      <button type="button" class="btn btn-danger" onclick="addRow()">
+      <button type="button" class="btn btn-danger" onclick="addSeries()">
         Добавить
       </button>
     </div>
@@ -86,7 +70,8 @@
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script>
   <script>
-    function addRow() {
+    
+    /*function addRow() {
       var tmdbID = document.querySelector("#id").value;
       var requestURL =
         "https://api.themoviedb.org/3/tv/" +
@@ -142,8 +127,9 @@
         row.appendChild(td5);
         tbody.appendChild(row);
       };
-    }
+    }*/
   </script>
+  <script src="js/base.js"></script>
 </body>
 
 </html>

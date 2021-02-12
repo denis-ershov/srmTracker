@@ -1,5 +1,5 @@
 window.onload = function () {
-  document.querySelector(".wrapper").style.marginTop= document.documentElement.clientWidth/5 + 'px';
+  document.querySelector(".wrapper").style.marginTop = document.documentElement.clientWidth/5 + 'px';
   //DATE AND TIME//
   //Converted into days, months, hours, day-name, AM/PM
   var dt = new Date();
